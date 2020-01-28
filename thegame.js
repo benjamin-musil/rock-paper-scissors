@@ -46,13 +46,32 @@ function playRound(playerSelection, computerSelection) {
 }
 
 function win(playerSelection, computerSelection) {
+	playerScore++;
 	return ("You win! :) " + playerSelection + " beats " + computerSelection + "!");
 }
 
 function lose(playerSelection, computerSelection) {
+	computerScore++;
 	return ("You lose! :( " + computerSelection + " beats " + playerSelection + "...");
 }
 
-const playerSelection = 'rock';
-const computerSelection = computerPlay();
-console.log(playRound(playerSelection, computerSelection));
+function game() {
+	while ((playerScore + computerScore) < 5) {
+		document.getElementById("result").innerHTML = playRound(prompt(), computerPlay())
+	}
+
+	if (playerScore > computerScore) {
+		document.getElementById("result").innerHTML = ("You win with a score of " + 
+			playerScore + " to " + computerScore + "!");
+	}
+	else {
+		document.getElementById("result").innerHTML = ("You lose with a score of " + 
+			playerScore + " to " + computerScore + ".");
+	}
+
+	playerScore = 0;
+	computerScore = 0;
+}
+
+let playerScore = 0;
+let computerScore = 0;
