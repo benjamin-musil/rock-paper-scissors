@@ -56,22 +56,28 @@ function lose(playerSelection, computerSelection) {
 }
 
 function game() {
-	while ((playerScore + computerScore) < 5) {
-		document.getElementById("result").innerHTML = playRound(prompt(), computerPlay())
-	}
+	playerChoice = document.getElementById("playerChoice").value;
+	document.getElementById("result").innerHTML = playRound(playerChoice, computerPlay());
+	document.getElementById("matchResult").innerHTML = ("");
+	numberRounds++;
+	document.getElementById("numberRounds").innerHTML = "Number of rounds played: " + numberRounds;
 
-	if (playerScore > computerScore) {
-		document.getElementById("result").innerHTML = ("You win with a score of " + 
-			playerScore + " to " + computerScore + "!");
-	}
-	else {
-		document.getElementById("result").innerHTML = ("You lose with a score of " + 
-			playerScore + " to " + computerScore + ".");
-	}
+	if ((playerScore + computerScore) == 5) {
+		if (playerScore > computerScore) {
+			document.getElementById("matchResult").innerHTML = ("You win with a score of " + 
+				playerScore + " to " + computerScore + "!");
+		}
+		else {
+			document.getElementById("matchResult").innerHTML = ("You lose with a score of " + 
+				playerScore + " to " + computerScore + ".");
+		}
 
-	playerScore = 0;
-	computerScore = 0;
+		playerScore = 0;
+		computerScore = 0;
+		numberRounds = 0;
+	}
 }
 
 let playerScore = 0;
 let computerScore = 0;
+let numberRounds = 0;
